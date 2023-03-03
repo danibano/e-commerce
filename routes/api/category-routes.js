@@ -5,7 +5,7 @@ const { Category, Product } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
-    const categoriesData = await Category.findAll();
+    const categoriesData = await Category.findAll({include: [Product]});
     res.status(200).json(categoriesData);
   } catch (err) {
     res.status(500).json(err)
@@ -55,9 +55,9 @@ router.put('/:id', async (req, res) => {
     }
 
     res.status(200).json(categoriesData);
-  } catch (err) [
+  } catch (err) {
     res.status(500).json(err);
-  ]
+  }
 });
 
 router.delete('/:id', async (req, res) => {
